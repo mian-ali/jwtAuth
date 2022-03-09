@@ -1,1 +1,1 @@
-## Server Side jwt Auth && Also Using  Node Mailer For Sending Emails
+### Server Side jwt Auth && Also Using NodeMailer For Sending emails
