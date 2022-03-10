@@ -29,7 +29,11 @@ class UserController{
                         tc:tc
                     })
                     await newUser.save()
-                    res.send({"status": "success", "message":"User registration SuccessFully"})
+                    //Generate token
+                    const save_user=await UserModel.findOne({email:email})
+                    const token=jwt.sign({userID:save_user._id}, process.env.JWT_SECERT_KEY, {expiresIn:'1d'})
+
+                    res.send({"status": "success", "message":"User registration SuccessFully","token":token})
 
                 } catch (error) {
                     res.send({"status": "falied", "message":"unable to registration "})
@@ -67,7 +71,10 @@ class UserController{
                         const isMatch=await bcrypt.compare(password ,user.password)
                         if ((user.email=== email) &&  isMatch) {
                             
-                             res.send({"status":"success", "message":"user_login SuccessFully"})
+                            //Generate token
+                    const token=jwt.sign({userID:user._id}, process.env.JWT_SECERT_KEY, {expiresIn:'1d'})
+
+                             res.send({"status":"success", "message":"user_login SuccessFully","token":token})
                         }else{
                             res.send({ "status": "failed", "message": "Email or Password is not Valid" })
                         }
