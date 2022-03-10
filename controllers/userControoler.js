@@ -57,9 +57,6 @@ class UserController{
 
     }
 
-
-
-    
     static userLogin =async(req,res)=>{
         try {
     
@@ -72,7 +69,7 @@ class UserController{
                         if ((user.email=== email) &&  isMatch) {
                             
                             //Generate token
-                    const token=jwt.sign({userID:user._id}, process.env.JWT_SECERT_KEY, {expiresIn:'1d'})
+                          const token=jwt.sign({userID:user._id}, process.env.JWT_SECERT_KEY, {expiresIn:'1d'})
 
                              res.send({"status":"success", "message":"user_login SuccessFully","token":token})
                         }else{
@@ -101,13 +98,21 @@ class UserController{
           if (password !== password_confirmation) {
             res.send({ "status": "failed", "message": "New Password and Confirm New Password doesn't match" })
           } else {
-            const salt = await bcrypt.genSalt(10)
-            const newHashPassword = await bcrypt.hash(password, salt)
 
+            const salt = await bcrypt.genSalt(10)
+            const newHashPassword = await bcrypt. hash(password, salt)
+            await UserModel.findByIdAndUpdate(req.user._id, { $set: { password: newHashPassword } })
+ 
+            // console.log(req.user)
+            res.send({"status": "success", "message":"password SuccessFully"})
           }
         } else {
           res.send({ "status": "failed", "message": "All Fields are Required" })
         }
+      }
+
+      static loggedUser = async (req, res) => {
+        res.send({ "user": req.user })
       }
     
 
