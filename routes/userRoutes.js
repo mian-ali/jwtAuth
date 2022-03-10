@@ -8,4 +8,5 @@ router.post('/register', UserController.userRegistration)
 router.post('/userlogin' , UserController.userLogin)
 
 //private proctected Route
+router.post('/changepassword', UserController.changeUserPassword)
 export default router
