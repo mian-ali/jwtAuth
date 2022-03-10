@@ -79,7 +79,7 @@ class UserController{
                             res.send({ "status": "failed", "message": "Email or Password is not Valid" })
                         }
                     }else{
-                        res.send({ "status": "failed", "message": "You are not a Registered User" })
+                        res.send({ "status": "failed", "message": "You are not  a Registered User" })
                     }
                 
 
