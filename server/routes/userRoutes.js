@@ -16,7 +16,6 @@ router.post('/userlogin' , UserController.userLogin)
 
 //private proctected Route
 router.post('/changepassword', UserController.changeUserPassword)
-router.get('/loggeduser' , UserController.loggedUser)
 
 
 export default router
