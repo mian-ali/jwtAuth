@@ -1,0 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.Nav {
+  height: 100px;
+  width: 100%;
+  background: #000;
+}
+
+.Nav ul {
+  display: flex;
+  list-style: none;
+  justify-content: end;
+  align-items: center;
+}
+
+.Nav ul > li {
+  color: wheat;
+  background-color: red;
+  padding: 10px 20px;
+  margin-left: 20px;
+}
